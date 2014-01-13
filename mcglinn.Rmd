@@ -1,0 +1,49 @@
+Replicating analyses from Zanne et al. 2013 Nature (doi:10.1038/nature12872)
+=======
+
+### Load packages
+
+```{r}
+library(rgbif)
+library(data.table)
+library(plyr)
+```
+
+### Get species names
+
+```{r}
+spnames <- unique(as.character(read.delim('names-tr.txt', header=TRUE)$newName))
+```
+
+### Get GBIF data
+
+```{r}
+keys <- sapply(spnames[1:10], function(x) name_backbone(x, "species")$usageKey)
+data <- occ_search(keys, georeferenced=TRUE, minimal=FALSE, return='data')
+df <- do.call(rbind.fill, data)
+head(df); nrow(df)
+```
+
+### Get Worldclim data 
+
+__not sure how to get this data yet. dismo has bioclim data...__
+
+```{r}
+library(dismo)
+# bioclim...
+```
+
+### Phylogeny data
+
+__I didn't upload all the phylogeny data, files quite large__
+
+```{r}
+library(ape)
+tree <- read.tree("PhylogeneticResources/Vascular_Plants_rooted.dated.tre")
+summary(tree)
+plot(extract.clade(tree, 32500))
+```
+
+### Trait data
+
+__Perhaps we can get some other trait data for these species, or just make up data?__

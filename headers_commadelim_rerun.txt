@@ -1,0 +1,1 @@
+data_provider_id,data_resource_id,Date_collected,Basis_of_record,Image_url,Scientific_name_interpreted,Country,Country_interpreted,Latitude,Longitude,geospatial_issue,occurrence_id
